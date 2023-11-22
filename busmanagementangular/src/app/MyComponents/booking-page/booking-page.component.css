@@ -1,0 +1,103 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* .container {
+    margin: 0 auto;
+  }
+
+  .traveldetails {
+    border: 1px solid black;
+    padding: auto;
+    background-color: #EEF5FF;
+
+  }
+
+  .traveldetails input {
+    margin: 10px;
+  }
+
+    input, select {
+    margin: 10px;
+  }
+
+  .personaldetails {
+    border: 1px solid black;
+    padding: auto;
+    background-color: #EEF5FF;
+
+  }
+
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+td, th {
+    border: 1px solid;
+    text-align: center;
+} */
+
+
+.container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  color: #333;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+.traveldetails,
+.personaldetails {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+

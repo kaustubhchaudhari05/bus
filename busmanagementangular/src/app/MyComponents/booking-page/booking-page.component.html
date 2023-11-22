@@ -1,0 +1,223 @@
+<div class="container">
+  <button type="button" *ngIf="login" (click)="logout()" >Logout</button>
+  <button type="button" (click)="history()">History</button>
+    <h2>Welcome {{customer.firstname}}</h2>
+    <h2>Welcome to Bus Booking Portal</h2>
+        <form  [formGroup]="bookingForm" (ngSubmit)="booking()" >
+          <div>
+            <div class="traveldetails">
+            <label for="startpoint" >From: 
+                <select  id="startpoint"  formControlName="startpoint">
+                    <option value="0">Select one</option>
+                    <option *ngFor="let city of newCity" value='{{city.cityname}}'> {{city.cityname}} </option>
+                </select>
+            </label>
+            <br>
+            <label for="endpoint">To: 
+                <select  id="endpoint" formControlName="endpoint">
+                    <option value="0">Select One</option>
+                    <option *ngFor="let city of newCity" value='{{city.cityname}}'> {{city.cityname}} </option>
+                </select>
+            </label>
+            <br>
+            <label for="people">Number of people: 
+                <select name="people" id="people" formControlName="people" (change)="onPeopleChange()">
+                    <option value="0">Select one</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </label>
+            <br>
+        </div>
+        <ng-container *ngIf="selectedPeople !== '0'">
+          <ng-container formArrayName="persons">
+            <div *ngFor="let i of selectedPeople, index as a;" class="personaldetails">
+              <!-- [formArrayName] = "details" -->
+              <label>Customer {{a+1}}</label>
+              <div >
+                <label for="firstname" >First name: <input type="text" id="{{'firstname'+a}}"  formControlName="firstname"> </label>
+                <br>
+                <label for="lastname">Last name: <input type="text" formControlName="lastname" id="{{'lastname'+a}}"> </label>
+                <br>
+                <label for="dob">Date of birth: <input type="date" formControlName="dob" id="{{'dob'+a}}" > </label>
+                <br>
+                <label for="email">Email: <input type="email" formControlName="email" id="{{'email'+a}}"> </label>
+                <br>
+                <label for="gender">Gender 
+                  <select  id="{{'gender'+a}}" formControlName="gender">
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                  </select>
+                </label>
+                <br>
+                <label for="contact_no" >Contact: <input type="number" formControlName="contact_no" id="{{'contactNo'+a}}"  minlength="10"> </label>
+            </div>
+        
+    </div>
+  </ng-container>
+</ng-container>
+        <button type="submit">Book</button>
+      </div>
+      </form>
+        <button type="button" id="display" (click)="display()">Preview</button>
+        
+        
+        
+        <table *ngIf="showTable">
+            <tr>
+                <th>Passenger name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Start-point</th>
+                <th>End-point</th>
+                <th>distance</th>
+                <th>Fare</th>
+                <th>Status</th>
+            </tr>
+            <tr *ngFor="let item of postedBook">
+                <td> {{item.passengername}} </td>
+                <td> {{item.gender}} </td>
+                <td> {{item.age}} </td>
+                <td> {{item.email}} </td>
+                <td> {{item.contact}} </td>
+                <td> {{item.startpoint}} </td>
+                <td> {{item.endpoint}} </td>
+                <td> {{item.distance}} </td>
+                <td> {{item.fare}} </td>
+                <td> {{item.status}} </td>
+            </tr>
+        </table>
+
+        <table *ngIf="showTable1">
+          <tr>
+              <th>Passenger name</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th>Email</th>
+              <th>Contact</th>
+              <th>Start-point</th>
+              <th>End-point</th>
+              <th>distance</th>
+              <th>Fare</th>
+              <th>Status</th>
+          </tr>
+          <tr *ngFor="let data of historyData">
+              <td> {{data.passengername}} </td>
+              <td> {{data.gender}} </td>
+              <td> {{data.age}} </td>
+              <td> {{data.email}} </td>
+              <td> {{data.contact}} </td>
+              <td> {{data.startpoint}} </td>
+              <td> {{data.endpoint}} </td>
+              <td> {{data.distance}} </td>
+              <td> {{data.fare}} </td>
+              <td> {{data.status}} </td>
+          </tr>
+      </table>
+</div>
+
+<!--  -->
+<!--  -->
+
+ <!-- <div class="container">
+    <h2>Welcome {{ customer.firstname }}</h2>
+    <form [formGroup]="bookingForm" (ngSubmit)="booking()">
+      <div class="traveldetails">
+        <mat-form-field appearance="fill">
+          <mat-label>From:</mat-label>
+          <mat-select formControlName="startpoint">
+            <mat-option value="0">Select one</mat-option>
+            <mat-option *ngFor="let city of newCity" [value]="city.cityname">{{ city.cityname }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>To:</mat-label>
+          <mat-select formControlName="endpoint">
+            <mat-option value="0">Select One</mat-option>
+            <mat-option *ngFor="let city of newCity" [value]="city.cityname">{{ city.cityname }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label for="people">Number of people:</mat-label>
+          <mat-select name="people" id="people" formControlName="people" (change)="onPeopleChange()">
+            <mat-option value="0">Select one</mat-option>
+            <mat-option [value]="1">1</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="3">3</mat-option>
+            <mat-option [value]="4">4</mat-option>
+            <mat-option [value]="5">5</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <ng-container *ngIf="selectedPeople !== '0'">
+        <div *ngFor="let i of [].constructor(+selectedPeople); let index = index" class="personaldetails">
+          <div>
+            <mat-form-field appearance="fill">
+              <mat-label>First name:</mat-label>
+              <input matInput type="text" id="firstname" formControlName="firstname" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Last name:</mat-label>
+              <input matInput type="text" id="lastname" formControlName="lastname" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Date of Birth</mat-label>
+              <input matInput type="date" id="dob" formControlName="dob" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Gender</mat-label>
+              <input matInput type="text" id="gender" formControlName="gender" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput type="text" id="email" formControlName="email" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Contact</mat-label>
+              <input matInput type="number" id="contact_no" formControlName="contact_no" />
+            </mat-form-field>
+  
+          </div>
+        </div>
+      </ng-container>
+  
+      <button mat-raised-button type="submit">Book</button>
+      <button mat-raised-button type="button" id="display" (click)="display()">Preview</button>
+    </form>
+  
+    <table *ngIf="showTable">
+      <tr>
+        <th>Passenger name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Start-point</th>
+        <th>End-point</th>
+        <th>distance</th>
+        <th>Fare</th>
+        <th>Status</th>
+    </tr>
+    <tr >
+        <td> {{postedBook.passengername}} </td>
+        <td> {{postedBook.gender}} </td>
+        <td> {{postedBook.age}} </td>
+        <td> {{postedBook.email}} </td>
+        <td> {{postedBook.contact}} </td>
+        <td> {{postedBook.startpoint}} </td>
+        <td> {{postedBook.endpoint}} </td>
+        <td> {{postedBook.distance}} </td>
+        <td> {{postedBook.fare}} </td>
+        <td> {{postedBook.status}} </td>
+    </tr>
+     </table>
+  </div> 
+     -->
