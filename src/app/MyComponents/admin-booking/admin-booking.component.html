@@ -1,0 +1,71 @@
+<div class="container">
+    <h2>Welcome back {{admin.firstname+ " " + admin.lastname}} </h2>
+<button type="button" (click)="Bookings()">Show Bookings</button>
+<button type="button" (click)="selectedBookings()">Show Selected Bookings</button>
+<table *ngIf="showTable">
+    <tr>
+        <th>Passenger Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Start-point</th>
+        <th>End-point</th>
+        <th>Distance</th>
+        <th>Fare</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let data of newData">
+        <td> {{data.passengername}} </td>
+        <td> {{data.gender}} </td>
+        <td> {{data.age}} </td>
+        <td> {{data.email}} </td>
+        <td> {{data.contact}} </td>
+        <td> {{data.startpoint}} </td>
+        <td> {{data.endpoint}} </td>
+        <td> {{data.distance}} </td>
+        <td> {{data.fare}} </td>
+        <td> {{data.status}} </td>
+    </tr>
+</table>
+<table *ngIf="showSelectedBookingTable">
+    <tr>
+        <th>Passenger Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Start-point</th>
+        <th>End-point</th>
+        <th>Distance</th>
+        <th>Fare</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let data of selectedBookingData">
+        <td> {{data.passengername}} </td>
+        <td> {{data.gender}} </td>
+        <td> {{data.age}} </td>
+        <td> {{data.email}} </td>
+        <td> {{data.contact}} </td>
+        <td> {{data.startpoint}} </td>
+        <td> {{data.endpoint}} </td>
+        <td> {{data.distance}} </td>
+        <td> {{data.fare}} </td>
+        <td> {{data.status}} </td>
+    </tr>
+</table>
+</div>
+
+
+
+    <!-- "passengername": "mukul sindholia",
+    "gender": "male",
+    "age": 24,
+    "email": "mukul@gmail.com",
+    "contact": 52645,
+    "startpoint": "Nagpur",
+    "endpoint": "Jalna",
+    "distance": 0,
+    "fare": 0,
+    "status": null -->
+  

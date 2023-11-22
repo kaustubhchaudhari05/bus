@@ -1,0 +1,15 @@
+
+<div class="container">
+    <h3>Login</h3>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <!-- <form [formGroup]="loginForm"> -->
+        <label for="username">Username: <input type="text" id="username" formControlName="username" required></label>
+        <br>
+        <label for="password">Password: <input type="password" id="password" formControlName="password" required></label>
+        <br>
+        <button type="submit">Login</button> <br>
+        <!-- <button type="submit" (click)="openBooking()">Login</button> -->
+        <!-- <button (click)="openSignup()">Signup</button> -->
+        <a id="link" routerLink="/signup">Sign up</a>
+    </form>
+</div>
